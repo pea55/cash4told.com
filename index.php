@@ -26,11 +26,35 @@
             document.getElementById(div).style.display = 'block';
         }
     </script>
+    <script type="text/javascript">
+    
+    function noLoady()
+    {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById("display").innerHTML=xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("GET","response.php?t=" + Math.random(),true);
+    xmlhttp.send();
+    }
+    </script>
 </head>
 <body>
     <div id="wrapper">
-        <h1><?php $lines = json_decode(file_get_contents("lines.json"), true); echo $lines[array_rand($lines)]; ?></h1>
-        <h6><a class="refresh" href="http://cash4told.com/">Refresh for another</a> / <a class="pasta" href="#" onClick="show('copypasta'); return false;">Click here to show copypasta</a> / Submit changes and view the full list via the <a href="https://github.com/citricsquid/cash4told.com/blob/master/lines.json">repository on github.com</a>.</h6>
+        <h1 id = "display"></h1>
+        <h6><a class="refresh" href="#" onClick="noLoady()">Refresh for another</a> / <a class="pasta" href="#" onClick="show('copypasta'); return false;">Click here to show copypasta</a> / Submit changes and view the full list via the <a href="https://github.com/citricsquid/cash4told.com/blob/master/lines.json">repository on github.com</a>.</h6>
         <pre id="copypasta"><?php foreach($lines as $line) { echo "[X] " . $line . "<br/><br/>"; } ?></pre>
     </div>
 </body>
