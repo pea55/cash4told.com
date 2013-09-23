@@ -31,7 +31,7 @@
     <div id="wrapper">
         <h1><?php $lines = json_decode(file_get_contents("lines.json"), true); echo $lines[array_rand($lines)]; ?></h1>
         <h6><span class="refresh">Refresh for another</span> / <a class="pasta" href="#" onClick="show('copypasta'); return false;">Click here to show copypasta</a> / Submit changes and view the full list via the <a href="https://github.com/citricsquid/cash4told.com/blob/master/lines.json">repository on github.com</a>.</h6>
-        <pre id="copypasta"><?php foreach($lines as $line) { echo "[X] " . $line . "<Br/>"; } ?></pre>
+        <pre id="copypasta"><?php foreach($lines as $line) { echo "[X] " . $line . "<br/><br/>"; } ?></pre>
     </div>
 </body>
 </html>
